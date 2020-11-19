@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html">
 
-<head>
+<head class="html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -32,6 +32,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        #header {
+            height: 10vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        #haut {
+            height: 90vh;
         }
 
         p {
@@ -70,22 +81,108 @@
             color: #212F3D;
             border: 2px solid #212F3D;
         }
-        a:hover{
+
+        a:hover {
             transform: translateY(3px);
-            transition-duration:  0.3s;
+            transition-duration: 0.3s;
         }
-        h1{
+
+        h1 {
             font-size: 3em;
         }
+
+        #day-night {
+            cursor: pointer;
+            margin: 0px 20px;
+        }
+
+        @keyframes background-night {
+            from {
+                color: #212F3D;
+                background-color: #F2F4F4;
+            }
+
+            to {
+                color: #F2F4F4;
+                background-color: #212F3D;
+            }
+        }
+
+        @keyframes background-day {
+            from {
+                color: #F2F4F4;
+                background-color: #212F3D;
+            }
+
+            to {
+                color: #212F3D;
+                background-color: #F2F4F4;
+            }
+        }
+
+        @keyframes button-night {
+            from {
+                color: #212F3D;
+                border: 2px solid #212F3D;
+            }
+
+            to {
+                color: #F2F4F4;
+                border: 2px solid #F2F4F4;
+            }
+        }
+
+        @keyframes button-day {
+            from {
+                color: #F2F4F4;
+                border: 2px solid #F2F4F4;
+            }
+
+            to {
+                color: #212F3D;
+                border: 2px solid #212F3D;
+            }
+        }
     </style>
+    <script>
+        var Day = true;
+        function ChangeBack() {
+            var background = document.getElementsByClassName("html");
+            var button = document.getElementsByClassName("button");
+            var NJ = document.getElementById("day-night")
+            console.log(background);
+            if (Day == true) {
+                Day = false;
+                for (var i = 0; i < background.length; i++) {
+                    background[i].style.animation = "background-night 1s ease forwards";
+                }
+                for (var i = 0; i < button.length; i++) {
+                    button[i].style.animation = "button-night 1s ease forwards";
+                }
+                NJ.innerHTML = "Mode Jour"
+            } else {
+                Day = true;
+                for (var i = 0; i < background.length; i++) {
+                    background[i].style.animation = "background-day 1s ease forwards";
+                }
+                for (var i = 0; i < button.length; i++) {
+                    button[i].style.animation = "button-day 1s ease forwards";
+                }
+                NJ.innerHTML = "Mode Nuit"
+            }
+        }
+    </script>
 </head>
+<header id="header">
+    <a id="day-night" class="button" onclick="ChangeBack()">Mode Nuit</a>
+</header>
 
 <body>
     <span id="haut">
         <h1>Bestiaire</h1>
-        <a href="#Jaguar">Commencer</a>
+        <a href="#Jaguar" class="button">Commencer</a>
     </span>
-    
+
     <span id="Jaguar">
         <h2>Le Jaguar</h2>
         <div class="img" id="jaguar-img"></div>
@@ -101,7 +198,7 @@
         <p>Comme tous les félins, le jaguar est un <b>carnivore</b>, il préfère les grandes proies et chasse cervidés,
             serpents, capybaras, tapirs, pécaris, caïmans.</p>
         </p>
-        <a href="#Poule">Suivant</a>
+        <a href="#Poule" class="button">Suivant</a>
     </span>
 
     <span id="Poule">
@@ -118,7 +215,7 @@
                 d'insectes ou autres petits animaux</b> (vers, fourmis, amphibiens, lézards, petits rongeurs, etc.) qui
             lui apportent les protéines dont elle a besoin</p>
         </p>
-        <a href="#Môle">Suivant</a>
+        <a href="#Môle" class="button">Suivant</a>
     </span>
     <span id="Môle">
         <h2>La Môle</h2>
@@ -136,7 +233,7 @@
             calmars, des crustacés,
             des petits poissons, des alevins et des zostères.</p>
         </p>
-        <a href="#haut">Retour en haut de la page</a>
+        <a href="#header" class="button">Retour en haut de la page</a>
     </span>
 </body>
 
